@@ -21,7 +21,7 @@ Developed by: {owner.mention(style='md')}
     # Buttons
     buttons = [
         [
-            InlineKeyboardButton('Developer', url=f"https://t.me/{owner_username}")
+            InlineKeyboardButton('Developed by', url=f"https://t.me/tellybots_4u")
         ]
 [
             InlineKeyboardButton('Support Group', url=f"https://t.me/tellybots_support")
