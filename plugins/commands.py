@@ -3,15 +3,19 @@ from config import Config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-    # start text
-    text = f"""Hey! {m.from_user.mention(style='md')},
+    class Data:
+    # Start Message
+    START = """
+Hey {}
 
-💡 ** I am Telegram Json Extractor bot and Chatbase channel id generator bot **
+Welcome to {}
 
-`Send any Msg by own or Forward msg from your channel to get json details,you can also use IDs as Chatbase Token`
+I am Telegram Json Extractor or Chatbase Token extractor bot
 
-**👲 Maintained By: @Tellybots_4u**
-"""
+Just Send msg by own or forward msg from channel to get json details.
+
+By @Tellybots_4u
+    """
 
     # Buttons
     buttons = [
@@ -28,7 +32,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 @Client.on_message(filters.private & filters.incoming)
 async def show_json(c, m):
-    text = f'`{m}`'
+    text = f'{m}'
     if len(text) <= 4096:
         await m.reply_text(text)
     else:
@@ -39,7 +43,7 @@ async def show_json(c, m):
 
 @Client.on_inline_query()
 async def inline_json(c, m):
-    text = f'`{m}`'
+    text = f'{m}'
     if len(text) <= 4096:
         await c.send_message(chat_id=m.from_user.id, text=text)
     else:
