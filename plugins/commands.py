@@ -6,22 +6,22 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 @Client.on_message(filters.command('start'))
 async def start(c, m):
     owner = await c.get_users(int(Config.OWNER_ID))
-    owner_username = owner.username if owner.username else 'Ns_bot_updates'
+    owner_username = owner.username if owner.username else 'Tellybots_4u'
 
     # start text
     text = f"""Hey! {m.from_user.mention(style='md')},
 
-💡 ** I am Telegram ShowJson Bot**
+💡 ** I am Telegram Json Extractor bot and Chatbase channel id generator bot **
 
-`Get the json for the text, media, etc.`
+`Send any Msg by own or Forward msg from your channel to get json details,you can also use IDs as Chatbase Token`
 
-**👲 Maintained By:** {owner.mention(style='md')}
+**👲 Maintained By: @Tellybots_4u**
 """
 
     # Buttons
     buttons = [
         [
-            InlineKeyboardButton('My Father 👨‍✈️', url=f"https://t.me/{owner_username}")
+            InlineKeyboardButton('Developer👨‍✈️', url=f"https://t.me/tellybots_4u")
         ]
     ]
     await m.reply_text(
@@ -55,6 +55,6 @@ async def inline_json(c, m):
 
     await m.answer(
         results=[],
-        switch_pm_text=f"Hey i sent the json in PM 😉",
+        switch_pm_text=f"Hey i sent the json in PM ",
         switch_pm_parameter="start",
     )
