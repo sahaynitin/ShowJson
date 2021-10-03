@@ -1,10 +1,15 @@
-from pyrogram.types import InlineKeyboardButton
+import os
+from config import Config
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
+@Client.on_message(filters.command('start'))
+async def start(c, m):
+    owner = await c.get_users(int(Config.OWNER_ID))
+    owner_username = owner.username if owner.username else 'Ns_bot_updates'
 
-class Data:
-    # Start Message
-    START = """
-Hey {}
+    # start text
+    text = f"""Hey {}
 
 Welcome to {}
 
@@ -29,49 +34,15 @@ By @Tellybots_4u
         ],
         [InlineKeyboardButton("♥ More Amazing bots ♥", url="https://t.me/Tellybots_4u")],
     ]
-    await m.reply_text(
-        text=text,
-        reply_markup=InlineKeyboardMarkup(buttons)
-    )
-
-
-
-@Client.on_message(filters.private & filters.incoming)
-async def show_json(c, m):
-    text = f'`{m}`'
-    if len(text) <= 4096:
-        await m.reply_text(text)
-    else:
-        with open(f'Your json file {m.from_user.first_name}.json', 'w') as f:
-            f.write(text)
-        await m.reply_document(f'Your json file {m.from_user.first_name}.json', True)
-        os.remove(f'Your json file {m.from_user.first_name}.json')
-
-@Client.on_inline_query()
-async def inline_json(c, m):
-    text = f'`{m}`'
-    if len(text) <= 4096:
-        await c.send_message(chat_id=m.from_user.id, text=text)
-    else:
-        with open(f'Your json file {m.from_user.first_name}.json', 'w') as f:
-            f.write(text)
-        await c.send_document(chat_id=m.from_user.id, file_name=f'Your json file {m.from_user.first_name}.json')
-        os.remove(f'Your json file {m.from_user.first_name}.json')
-
-    await m.answer(
-        results=[],
-        switch_pm_text=f"Hey i sent the json in PM 😉",
-        switch_pm_parameter="start",
-    )
 
     # Help Message
     HELP = """
-**Usage**
+Usage
 
 1) Just send a PDF to do stuff on it
 2) Send images to convert to PDFs
 
-**Functions**
+Functions
 1) Rotate PDF Pages
 2) Merge PDFs
 3) Encrypt PDFs
@@ -81,7 +52,7 @@ async def inline_json(c, m):
 
     # About Message
     ABOUT = """
-**About This Bot** 
+About This Bot 
 
 A telegram bot with Pdf tools by @Tellybots_4u
 
@@ -93,4 +64,22 @@ Language : [Python](www.python.org)
 
 Developer : @Tellybots_4u
     """
+await m.reply_text(
+        text=text,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
 
+
+
+@Client.on_message(filters.private & filters.incoming)
+async def show_json(c, m):
+    text = f'{m}'
+    if len(text) <= 4096:
+        await m.reply_text(text)
+    else:
+        with open(f'Your json file {m.from_user.first_name}.json', 'w') as f:
+            f.write(text)
+        await m.reply_document(f'Your json file {m.from_user.first_name}.json', True)
+        os.remove(f'Your json file {m.from_user.first_name}.json')
+
+@Client.on_inline_query()
