@@ -21,7 +21,7 @@ async def start(c, m):
     # Buttons
     buttons = [
         [
-            InlineKeyboardButton('Developed by' 👨‍✈️', url=f"https://t.me/tellybots_4u")
+            InlineKeyboardButton('Developed by' 👨‍✈️', url=f"https://t.me/{owner_id}")
         ]
     ]
     await m.reply_text(
