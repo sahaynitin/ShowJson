@@ -3,26 +3,30 @@ from config import Config
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-    class Data:
-    # Start Message
-    START = """
-Hey {}
+@Client.on_message(filters.command('start'))
+async def start(c, m):
+    owner = await c.get_users(int(Config.OWNER_ID))
+    owner_username = owner.username if owner.username else 'Tellybots_4u'
 
-Welcome to {}
+    # start text
+    text = f"""Hey! {m.from_user.mention(style='md')},
 
-I am Telegram Json Extractor or Chatbase Token extractor bot
+💡  I am Telegram ShowJson Bot
 
-Just Send msg by own or forward msg from channel to get json details.
+Send Msg by own or forward msg from channel to get json details.
 
-By @Tellybots_4u
-    """
+Developed by: {owner.mention(style='md')}
+"""
 
     # Buttons
     buttons = [
         [
-            InlineKeyboardButton('Developer👨‍✈️', url=f"https://t.me/tellybots_4u")
+            InlineKeyboardButton('Developer', url=f"https://t.me/{owner_username}")
         ]
-    ]
+[
+            InlineKeyboardButton('Support Group', url=f"https://tellybots_support")
+        ]
+]
     await m.reply_text(
         text=text,
         reply_markup=InlineKeyboardMarkup(buttons)
@@ -54,6 +58,6 @@ async def inline_json(c, m):
 
     await m.answer(
         results=[],
-        switch_pm_text=f"Hey i sent the json in PM ",
+        switch_pm_text=f"Hi I sent Json in pm",
         switch_pm_parameter="start",
     )
