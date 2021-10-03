@@ -24,7 +24,7 @@ Developed by: {owner.mention(style='md')}
             InlineKeyboardButton('Developer', url=f"https://t.me/{owner_username}")
         ]
 [
-            InlineKeyboardButton('Support Group', url=f"https://tellybots_support")
+            InlineKeyboardButton('Support Group', url=f"https://t.me/tellybots_support")
         ]
 ]
     await m.reply_text(
