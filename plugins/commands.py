@@ -35,36 +35,7 @@ By @Tellybots_4u
         [InlineKeyboardButton("♥ More Amazing bots ♥", url="https://t.me/Tellybots_4u")],
     ]
 
-    # Help Message
-    HELP = """
-Usage
-
-1) Just send a PDF to do stuff on it
-2) Send images to convert to PDFs
-
-Functions
-1) Rotate PDF Pages
-2) Merge PDFs
-3) Encrypt PDFs
-4) Decrypt PDFs
-5) Convert Images to PDF
-"""
-
-    # About Message
-    ABOUT = """
-About This Bot 
-
-A telegram bot with Pdf tools by @Tellybots_4u
-
-Source Code : [Click Here](https://t.me/tellybots_digital)
-
-Framework : [Pyrogram](docs.pyrogram.org)
-
-Language : [Python](www.python.org)
-
-Developer : @Tellybots_4u
-    """
-await m.reply_text(
+    await m.reply_text(
         text=text,
         reply_markup=InlineKeyboardMarkup(buttons)
     )
