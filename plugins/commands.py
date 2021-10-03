@@ -9,9 +9,9 @@ async def start(c, m):
     owner_username = owner.username if owner.username else 'Tellybots_4u'
 
     # start text
-    text = f"""Hey! {m.from_user.mention(style='md')},
+    text = f"""Hi! {m.from_user.mention(style='md')},
 
-💡 ** I am Telegram Json details Extractor Bot**
+ ** I am Telegram Json details Extractor Bot**
 
 `Type or Forward any msg to get json details.`
 
