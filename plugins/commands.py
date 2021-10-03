@@ -19,14 +19,9 @@ Developed by: {owner.mention(style='md')}
 """
 
     # Buttons
-    buttons = [
-        [
-            InlineKeyboardButton('Developed by', url=f"https://t.me/tellybots_4u")
-        ]
-[
-            InlineKeyboardButton('Support Group', url=f"https://t.me/tellybots_support")
-        ]
-]
+    buttons = [InlineKeyboardButton('Developed by', url=f"https://t.me/tellybots_4u")]
+        
+[InlineKeyboardButton('Support Group', url=f"https://t.me/tellybots_support")]
     await m.reply_text(
         text=text,
         reply_markup=InlineKeyboardMarkup(buttons)
