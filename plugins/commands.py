@@ -13,7 +13,7 @@ async def start(c, m):
 
  ** I am Telegram Json Extractor bot**
 
-`Get the json for the text, media, etc.`
+`Just forward or type any msg to get json details.`
 
 **Developed by:** {owner.mention(style='md')}
 """
