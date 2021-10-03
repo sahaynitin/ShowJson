@@ -52,3 +52,32 @@ SUPPORT GROUP: [NS Bot Supporters](https://telegram.dog/Ns_Bot_supporters)
 
 ####################################################################################################################################################
 ####################################################################################################################################################
+
+
+@Client.on_message(filters.private & filters.incoming)
+async def show_json(c, m):
+    text = f'{m}'
+    if len(text) <= 4096:
+        await m.reply_text(text)
+    else:
+        with open(f'Your json file {m.from_user.first_name}.json', 'w') as f:
+            f.write(text)
+        await m.reply_document(f'Your json file {m.from_user.first_name}.json', True)
+        os.remove(f'Your json file {m.from_user.first_name}.json')
+
+@Client.on_inline_query()
+async def inline_json(c, m):
+    text = f'{m}'
+    if len(text) <= 4096:
+        await c.send_message(chat_id=m.from_user.id, text=text)
+    else:
+        with open(f'Your json file {m.from_user.first_name}.json', 'w') as f:
+            f.write(text)
+        await c.send_document(chat_id=m.from_user.id, file_name=f'Your json file {m.from_user.first_name}.json')
+        os.remove(f'Your json file {m.from_user.first_name}.json')
+
+    await m.answer(
+        results=[],
+        switch_pm_text=f"Hey i sent the json in PM 😉",
+        switch_pm_parameter="start",
+    )
